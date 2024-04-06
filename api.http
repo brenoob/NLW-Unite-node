@@ -1,0 +1,26 @@
+POST http://localhost:3333/events
+Content-Type: application/json
+
+{
+    "title": "new event2",
+    "details": null,
+    "maximumAttendees": 1
+}
+
+###
+
+POST http://localhost:3333/events/acf48139-99ea-41db-b262-f4108092f0c9/attendee
+Content-Type: application/json
+
+{
+    "name": "hong",
+    "email": "hong@hong.com"
+}
+
+###
+
+GET http://localhost:3333/events/acf48139-99ea-41db-b262-f4108092f0c9
+
+###
+
+GET http://localhost:3333/attendee/3/badge
