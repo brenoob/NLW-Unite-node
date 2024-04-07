@@ -10,8 +10,14 @@ import { getEventAttendees } from "./routes/Router-get-event-attendees";
 import fastifySwagger from "@fastify/swagger";
 import fastifySwaggerUi from "@fastify/swagger-ui"
 import { errorHandler } from "./error-handler";
+import fastifyCors from "@fastify/cors";
 
 const app = fastify();
+
+app.register(fastifyCors, {
+  // o domínio http front que tem acesso a api neste caso todos
+  origin: '*'
+})
 
 app.register(fastifySwagger, {
   swagger: {
@@ -42,6 +48,7 @@ app.register(getEventAttendees)
 
 app.setErrorHandler(errorHandler)
 
-app.listen({ port: 3333 }).then(() => {
+// host: '0.0.0.0', para rodar em react native
+app.listen({ port: 3333, host: '0.0.0.0' }).then(() => {
   console.log(`HTTP server running on http://localhost:3333`);
 });
