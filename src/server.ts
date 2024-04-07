@@ -9,6 +9,7 @@ import { getEventAttendees } from "./routes/Router-get-event-attendees";
 
 import fastifySwagger from "@fastify/swagger";
 import fastifySwaggerUi from "@fastify/swagger-ui"
+import { errorHandler } from "./error-handler";
 
 const app = fastify();
 
@@ -38,6 +39,8 @@ app.register(getEvent)
 app.register(getAttendeeBadge)
 app.register(checkIn)
 app.register(getEventAttendees)
+
+app.setErrorHandler(errorHandler)
 
 app.listen({ port: 3333 }).then(() => {
   console.log(`HTTP server running on http://localhost:3333`);

@@ -1,14 +1,28 @@
+# criando evento
 POST http://localhost:3333/events
 Content-Type: application/json
 
 {
-    "title": "new event3",
+    "title": "new event",
     "details": null,
     "maximumAttendees": 1
 }
 
 ###
 
+# gerando erro de validação
+POST http://localhost:3333/events
+Content-Type: application/json
+
+{
+    "title": 123,
+    "details": null,
+    "maximumAttendees": 1
+}
+
+###
+
+# criando attendee em um evento
 POST http://localhost:3333/events/acf48139-99ea-41db-b262-f4108092f0c9/attendee
 Content-Type: application/json
 
@@ -23,12 +37,15 @@ GET http://localhost:3333/events/95a82a95-8c4f-4fa4-b8ab-24f4fa8e2119
 
 ###
 
+# url de check-in e outras informações do attendee
 GET http://localhost:3333/attendee/3/badge
 
 ###
 
-GET http://localhost:3333/attendee/3/check-in
+# attendee check-in
+GET http://localhost:3333/attendee/5/check-in
 
 ###
 
-GET http://localhost:3333/events/95a82a95-8c4f-4fa4-b8ab-24f4fa8e2119/attendees
+#pesquisando attendees em um evento
+GET http://localhost:3333/events/2f64d431-ad7c-4844-912f-2248e4947bb1/attendees?query=hong
